@@ -8,7 +8,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: mydb
+      # POSTGRES_DB: mydb
       POSTGRES_USER: dms_user
       POSTGRES_PASSWORD: securepassword
     volumes:
