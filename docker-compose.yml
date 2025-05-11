@@ -1,1 +1,21 @@
-test
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: pg-cdc
+    environment:
+      POSTGRES_USER: cdc_user
+      POSTGRES_PASSWORD: cdc_pass
+      POSTGRES_DB: cdc_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./init:/docker-entrypoint-initdb.d
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+
+volumes:
+  pgdata:
